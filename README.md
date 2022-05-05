@@ -12,7 +12,6 @@
 -  
 ## 기술스택
 frontend: react, 
-
 back : GoLang
 
 ## 

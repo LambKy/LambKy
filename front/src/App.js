@@ -1,10 +1,12 @@
 import React from "react";
+import Main from './pages/Main';
 
 function App() {
+
   return (
-    <>
-    <p>하이</p>
-    </>
+    <div>
+      <Main />
+    </div>
   );
 }
 
