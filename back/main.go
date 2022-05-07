@@ -1,5 +1,5 @@
 package main
-
+//import
 import (
 	"net/http"
 
@@ -28,9 +28,9 @@ func main() {
 	if err != nil {
 		panic("Db연결에 실패")
 	}
-
+    //db생성
 	db.AutoMigrate(&User{})
-
+     //page설정
 	e := echo.New()
 	e.Static("/static", "page")
 
@@ -43,6 +43,7 @@ func main() {
 		if err := c.Bind(u); err != nil {
 			return err
 		}
+		//조건부여
 		if len(u.Name) == 0 {
 			return c.HTML(http.StatusOK, "<script>window.location.href='http://localhost:1323/join';alert('네임을 입력하세요.')</script>")
 		}
@@ -52,6 +53,7 @@ func main() {
 		if len(u.Pw) < 8 {
 			return c.HTML(http.StatusOK, "<script>window.location.href='http://localhost:1323/join';alert('패스워드를 입력하세요.')</script>")
 		}
+		//가입설정
 		ur := &User{
 			Idx:  u.Idx,
 			Pw:   u.Pw,
@@ -60,5 +62,6 @@ func main() {
 		db.Create(&ur)
 		return c.HTML(http.StatusOK, "<script>window.location.href='http://localhost:1323/complate';</script>")
 	})
+	//포트설정
 	e.Logger.Fatal(e.Start(":1323"))
 }
